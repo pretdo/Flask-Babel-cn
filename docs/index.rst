@@ -41,12 +41,9 @@ babel 对象本身以后支持用于配置 babel。Babel 有两个配置值，�
                             认值的时候，你的应用内部必须使用该时区。
 =========================== =============================================
 
-For more complex applications you might want to have multiple applications
-for different users which is where selector functions come in handy.  The
-first time the babel extension needs the locale (language code) of the
-current user it will call a :meth:`~Babel.localeselector` function, and
-the first time the timezone is needed it will call a
-:meth:`~Babel.timezoneselector` function.
+对于更复杂的应用你可能希望对于不同的用户有多个应用，这个时候是选择器函数派上用场的时候。babel 扩展第一次需要当前用户的地区的时候，它会调用 :meth:`~Babel.localeselector` 函数，第一次需要时区的时候，它会调用 :meth:`~Babel.timezoneselector` 函数。 
+
+
 
 If any of these methods return `None` the extension will automatically
 fall back to what's in the config.  Furthermore for efficiency that
