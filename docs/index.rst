@@ -3,32 +3,27 @@ Flask-Babel
 
 .. module:: flask.ext.babel
 
-Flask-Babel is an extension to `Flask`_ that adds i18n and l10n support to
-any Flask application with the help of `babel`_, `pytz`_ and
-`speaklater`_.  It has builtin support for date formatting with timezone
-support as well as a very simple and friendly interface to :mod:`gettext`
-translations.
+Flask-Babel 是一个 `Flask`_ 的扩展，在 `babel`_, `pytz`_ 和
+`speaklater`_ 的帮助下添加 i18n 和 l10n 支持到任何 Flask 应用。它内置了一个时间格式化的支持，同样内置了一个非常简单和友好的 :mod:`gettext` 翻译的接口。
 
-Installation
+安装
 ------------
 
-Install the extension with one of the following commands::
+下面命令可以安装扩展::
 
     $ easy_install Flask-Babel
 
-or alternatively if you have pip installed::
+或者如果你安装了 pip::
 
     $ pip install Flask-Babel
 
-Please note that Flask-Babel requires Jinja 2.5.  If you are using an
-older version you will have to upgrade or disable the Jinja support.
+请注意 Flask-Babel 需要 Jinja 2.5。如果你安装一个老的版本你将会需要升级或者禁止 Jinja 支持。
 
 
-Configuration
+配置
 -------------
 
-To get started all you need to do is to instanciate a :class:`Babel`
-object after configuring the application::
+在配置好应用后所有需要做的就是实例化一个 :class:`Babel` 对象::
 
     from flask import Flask
     from flask.ext.babel import Babel
@@ -37,17 +32,13 @@ object after configuring the application::
     app.config.from_pyfile('mysettings.cfg')
     babel = Babel(app)
 
-The babel object itself can be used to configure the babel support
-further.  Babel has two configuration values that can be used to change
-some internal defaults:
+babel 对象本身以后支持用于配置 babel。Babel 有两个配置值，这两个配置值能够改变内部的默认值:
 
 =========================== =============================================
-`BABEL_DEFAULT_LOCALE`      The default locale to use if no locale
-                            selector is registered.  This defaults
-                            to ``'en'``.
-`BABEL_DEFAULT_TIMEZONE`    The timezone to use for user facing dates.
-                            This defaults to ``'UTC'`` which also is the
-                            timezone your application must use internally.
+`BABEL_DEFAULT_LOCALE`      如果没有指定地域且选择器已经注册，
+                            默认是缺省地域。默认是 ``'en'``。
+`BABEL_DEFAULT_TIMEZONE`    用户默认使用的时区。默认是 ``'UTC'``。选用默
+                            认值的时候，你的应用内部必须使用该时区。
 =========================== =============================================
 
 For more complex applications you might want to have multiple applications
@@ -87,7 +78,7 @@ Example selector functions::
 The example above assumes that the current user is stored on the
 :data:`flask.g` object.
 
-Formatting Dates
+格式化时间
 ----------------
 
 To format dates you can use the :func:`format_datetime`,
@@ -128,7 +119,7 @@ u'Donnerstag, 5. M\xe4rz 1987 17:12'
 
 For more format examples head over to the `babel`_ documentation.
 
-Using Translations
+使用翻译
 ------------------
 
 The other big part next to date formatting are translations.  For that,
@@ -218,7 +209,7 @@ out if a translation matched a changed key).  If you have fuzzy entries,
 make sure to check them by hand and remove the fuzzy flag before
 compiling.
 
-Troubleshooting
+问题
 ---------------
 
 On Snow Leopard pybabel will most likely fail with an exception.  If this
@@ -240,13 +231,13 @@ API
 This part of the documentation documents each and every public class or
 function from Flask-Babel.
 
-Configuration
+配置
 `````````````
 
 .. autoclass:: Babel
    :members:
 
-Context Functions
+Context 函数
 `````````````````
 
 .. autofunction:: get_translations
@@ -255,7 +246,7 @@ Context Functions
 
 .. autofunction:: get_timezone
 
-Datetime Functions
+Datetime 函数
 ``````````````````
 
 .. autofunction:: to_user_timezone
@@ -270,7 +261,7 @@ Datetime Functions
 
 .. autofunction:: format_timedelta
 
-Gettext Functions
+Gettext 函数
 `````````````````
 
 .. autofunction:: gettext
@@ -285,7 +276,7 @@ Gettext Functions
 
 .. autofunction:: lazy_pgettext
 
-Low-Level API
+低层的 API
 `````````````
 
 .. autofunction:: refresh
