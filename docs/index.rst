@@ -130,15 +130,9 @@ Flask-Babel 如何找到翻译？首先你必须要生成翻译。这里是你�
 翻译应用
 ------------------------
 
-First you need to mark all the strings you want to translate in your
-application with :func:`gettext` or :func:`ngettext`.  After that, it's
-time to create a ``.pot`` file.  A ``.pot`` file contains all the strings
-and is the template for a ``.po`` file which contains the translated
-strings.  Babel can do all that for you.
+首先你需要用 :func:`gettext` 或者 :func:`ngettext` 在你的应用中标记你要翻译的所有字符串。在这之后，是时候创建一个 ``.pot`` 文件。一个 ``.pot`` 文件包含所有的字符串，并且它是一个 ``.po`` 文件的模板，``.po`` 文件包含已经翻译的字符串。Babel 可以为你做所有的这一切。
 
-First of all you have to get into the folder where you have your
-application and create a mapping file.  For typical Flask applications, this
-is what you want in there:
+首先你必须进入到你的应用所在的文件夹中并且创建一个映射文件夹。对于典型的 Flask 应用，这是你要的:
 
 .. sourcecode:: ini
 
@@ -146,43 +140,33 @@ is what you want in there:
     [jinja2: **/templates/**.html]
     extensions=jinja2.ext.autoescape,jinja2.ext.with_
 
-Save it as ``babel.cfg`` or something similar next to your application.
-Then it's time to run the `pybabel` command that comes with Babel to
-extract your strings::
+在你的应用中把它保存成 ``babel.cfg`` 或者其它类似的东东。接着是时候运行来自 Babel 中的 `pybabel` 命令来提取你的字符串::
 
     $ pybabel extract -F babel.cfg -o messages.pot .
 
-If you are using the :func:`lazy_gettext` function you should tell pybabel
-that it should also look for such function calls::
+如果你使用了 :func:`lazy_gettext` 函数，你应该告诉 pybabel，这时候需要这样运行 `pybabel`::
 
     $ pybabel extract -F babel.cfg -k lazy_gettext -o messages.pot .
 
-This will use the mapping from the ``babel.cfg`` file and store the
-generated template in ``messages.pot``.  Now we can create the first
-translation.  For example to translate to German use this command::
+这会使用 ``babel.cfg`` 文件中的映射并且在 ``messages.pot`` 里存储生成的模板。现在我可以创建第一个翻译。例如使用这个命令可以翻译成德语::
 
     $ pybabel init -i messages.pot -d translations -l de
 
-``-d translations`` tells pybabel to store the translations in this
-folder.  This is where Flask-Babel will look for translations.  Put it
-next to your template folder.
+``-d translations`` 告诉 pybabel 存储翻译在这个文件夹中。这是 Flask-Babel 寻找翻译的地方。可以把它放在你的模板文件夹旁边。
 
-Now edit the ``translations/de/LC_MESSAGES/messages.po`` file as needed.
-Check out some gettext tutorials if you feel lost.
+现在如有必要编辑 ``translations/de/LC_MESSAGES/messages.po`` 文件。如果你感到困惑的话请参阅一些 gettext 教程。
 
-To compile the translations for use, ``pybabel`` helps again::
+为了能用需要编译翻译，``pybabel`` 再次大显神通::
 
     $ pybabel compile -d translations
 
-What if the strings change?  Create a new ``messages.pot`` like above and
-then let ``pybabel`` merge the changes::
+如果字符串变化了怎么办？像上面一样创建一个新的 ``messages.pot`` 接着让 ``pybabel`` 整合这些变化::
 
     $ pybabel update -i messages.pot -d translations
 
-Afterwards some strings might be marked as fuzzy (where it tried to figure
-out if a translation matched a changed key).  If you have fuzzy entries,
-make sure to check them by hand and remove the fuzzy flag before
-compiling.
+
+之后有些字符串可能会被标记成含糊不清。如果有含糊不清的字符串的时候，务必在编译之前手动地检查他们并且移除含糊不清的标志。
+
 
 问题
 ---------------
